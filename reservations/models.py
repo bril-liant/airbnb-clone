@@ -5,7 +5,7 @@ from core import models as core_models
 
 class Reservation(core_models.TimeStampedModel):
 
-    """Reservation Model Definition"""
+    """ Reservation Model Definition """
 
     STATUS_PENDING = "pending"
     STATUS_CONFIRMED = "confirmed"

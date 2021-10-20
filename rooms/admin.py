@@ -6,7 +6,7 @@ from . import models
 @admin.register(models.RoomType, models.Facility, models.Amenity, models.HouseRule)
 class ItemAdmin(admin.ModelAdmin):
 
-    """Item Admin Definition"""
+    """ Item Admin Definition """
 
     list_display = ("name", "used_by")
 
@@ -24,14 +24,24 @@ class PhotoInline(admin.TabularInline):
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
-    """Room Admin Definition"""
+    """ Room Admin Definition """
 
     inlines = (PhotoInline,)
 
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "description", "country", "city", "address", "price")},
+            {
+                "fields": (
+                    "name",
+                    "description",
+                    "country",
+                    "city",
+                    "address",
+                    "price",
+                    "room_type",
+                )
+            },
         ),
         ("Times", {"fields": ("check_in", "check_out", "instant_book")}),
         ("Spaces", {"fields": ("guests", "beds", "bedrooms", "baths")}),
@@ -79,6 +89,8 @@ class RoomAdmin(admin.ModelAdmin):
     def count_amenities(self, obj):
         return obj.amenities.count()
 
+    count_amenities.short_description = "Amenity Count"
+
     def count_photos(self, obj):
         return obj.photos.count()
 
@@ -88,7 +100,7 @@ class RoomAdmin(admin.ModelAdmin):
 @admin.register(models.Photo)
 class PhotoAdmin(admin.ModelAdmin):
 
-    """Photo Admin Definition"""
+    """ Phot Admin Definition """
 
     list_display = ("__str__", "get_thumbnail")
 

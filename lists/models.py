@@ -4,7 +4,7 @@ from core import models as core_models
 
 class List(core_models.TimeStampedModel):
 
-    """List Model Definition"""
+    """ List Model Definition """
 
     name = models.CharField(max_length=80)
     user = models.ForeignKey(
